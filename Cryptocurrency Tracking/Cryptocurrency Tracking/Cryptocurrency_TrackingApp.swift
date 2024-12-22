@@ -11,7 +11,7 @@ import SwiftUI
 struct Cryptocurrency_TrackingApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            MainTabView()
         }
     }
 }
