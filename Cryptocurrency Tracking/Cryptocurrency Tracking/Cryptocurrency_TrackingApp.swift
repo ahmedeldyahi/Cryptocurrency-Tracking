@@ -9,9 +9,13 @@ import SwiftUI
 
 @main
 struct Cryptocurrency_TrackingApp: App {
+    init() {
+        _ = NetworkMonitor.shared
+    }
     var body: some Scene {
         WindowGroup {
             MainTabView()
+                .globalErrorToast()
         }
     }
 }

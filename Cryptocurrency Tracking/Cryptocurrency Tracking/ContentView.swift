@@ -8,23 +8,33 @@
 import SwiftUI
 
 struct ContentView: View {
-//    @StateObject var viewModel = CryptoSearchViewModel()
+    
+    @State var path = NavigationPath(["1", "2"])
+    
     var body: some View {
-        VStack {
-            Button("Fetch") {
-//                viewModel.searchCryptocurrencies(query: "Bitcoin")
+        NavigationStack(path: $path) {
+            VStack {
+                NavigationLink("Go to int screen", value: 1)
+                Spacer().frame(height: 10)
+                NavigationLink("Go to person screen", value: PersonModel(name: "Mark", age: 32))
+                
+            }.navigationDestination(for: String.self) { value in
+                Text("This is a string screen with value: \(value)")
+            }.navigationDestination(for: Int.self) { value in
+                Text("This is a int screen with value: \(value)")
+            }.navigationDestination(for: PersonModel.self) { value in
+                Text("This is a int Person with,\nName: \(value.name), Age: \(value.age)")
             }
-            
-//            ForEach(viewModel.cryptocurrencies, id: \.id) { item in
-//                Text(item.name)
-//
-//            }
-
         }
-        .padding()
     }
 }
 
 #Preview {
     ContentView()
+}
+
+
+struct PersonModel: Hashable {
+ let name: String
+ let age: Int
 }
