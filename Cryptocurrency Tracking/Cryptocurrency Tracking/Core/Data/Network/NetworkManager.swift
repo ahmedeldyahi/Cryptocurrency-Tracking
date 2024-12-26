@@ -6,13 +6,20 @@
 //
 
 import Foundation
-import Combine
+
 
 final class NetworkManager: NetworkService {
+    private let session: URLSessionProtocol
+    private let decoder: JSONDecoder
+    
+    init(session: URLSessionProtocol = URLSession.shared, decoder: JSONDecoder = .init()) {
+        self.session = session
+        self.decoder = decoder
+        self.decoder.keyDecodingStrategy = .convertFromSnakeCase
+    }
+    
     // Decode a response in a type-safe manner
     private func decode<T: Decodable>(_ data: Data) throws -> T {
-        let decoder = JSONDecoder()
-        decoder.keyDecodingStrategy = .convertFromSnakeCase
         do {
             return try decoder.decode(T.self, from: data)
         } catch {
@@ -27,8 +34,8 @@ final class NetworkManager: NetworkService {
         }
         
         do {
-            // Perform network call with async/await
-            let (data, response) = try await URLSession.shared.data(for: urlRequest)
+            // Perform network call with injected session
+            let (data, response) = try await session.data(for: urlRequest)
             
             // Verify the HTTP response and handle errors
             guard let httpResponse = response as? HTTPURLResponse else {
@@ -40,10 +47,8 @@ final class NetworkManager: NetworkService {
             return try decode(data)
             
         } catch let error as AppError {
-            // Handle and rethrow known network errors
             throw error
         } catch {
-            // Handle unknown errors gracefully
             throw AppError.unknown(message: error.localizedDescription)
         }
     }

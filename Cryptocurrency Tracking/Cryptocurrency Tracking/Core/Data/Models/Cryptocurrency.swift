@@ -6,45 +6,6 @@
 //
 
 import Foundation
-struct CryptocurrencyDetails: Codable {
-    let id: String
-    let symbol: String
-    let name: String
-    let marketData: MarketData
-}
-
-struct MarketData: Codable {
-    let currentPrice: Price?
-    let priceChangePercentage24H: Double?
-
-//    enum CodingKeys: String, CodingKey {
-//        case currentPrice = "current_price"
-//        case priceChangePercentage24H = "price_change_percentage_24h"
-//    }
-}
-
-struct Description: Codable {
-    let en: String?
-}
-
-struct Price: Codable {
-    let usd: Double?
-
-    enum CodingKeys: String, CodingKey {
-        case usd
-    }
-}
-
-struct SearchResponse: Decodable {
-    let coins: [Cryptocurrency]
-}
-
-
-
-struct PriceResponse: Decodable {
-    let data: [Cryptocurrency]
-}
-
 struct Cryptocurrency: Decodable, Hashable {
     var symbol: String //symbol name
     var price: String //current price

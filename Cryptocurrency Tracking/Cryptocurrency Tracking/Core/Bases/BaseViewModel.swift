@@ -9,14 +9,14 @@ import Foundation
 
 protocol BaseViewModel: ObservableObject {
     associatedtype Model
-    var state: VieState<[Model]> { get set }
+    var state: VieState<Model> { get set }
     func fetchData()
 }
 
 extension BaseViewModel {
-    func handleSuccess(_ cryptos: [Model]) {
+    func handleSuccess(_ result: Model) {
         DispatchQueue.main.async {
-            self.state = .success(cryptos)
+            self.state = .success(result)
         }
     }
 
@@ -29,8 +29,8 @@ extension BaseViewModel {
 
 
 class BaseCryptoViewModel: BaseViewModel {
-    typealias Model = Cryptocurrency
-    @Published var state: VieState<[Model]> = .idle
+    typealias Model = [Cryptocurrency]
+    @Published var state: VieState<Model> = .idle
     private let fetchUseCase: FetchPricesUseCase
     private var cancellables = Set<AnyCancellable>()
 
@@ -51,7 +51,7 @@ class BaseCryptoViewModel: BaseViewModel {
         }
     }
     
-    func handleSuccess(_ cryptos: [Model]) {
+    func handleSuccess(_ cryptos: Model) {
         DispatchQueue.main.async {
             self.state = .success(cryptos)
         }

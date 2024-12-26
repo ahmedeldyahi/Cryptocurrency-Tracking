@@ -17,7 +17,7 @@ class CryptoSearchViewModel: BaseCryptoViewModel {
         setupSearchListener()
     }
     
-    override func handleSuccess(_ cryptos: [Model]) {
+    override func handleSuccess(_ cryptos: Model) {
         DispatchQueue.main.async {
             super.handleSuccess(cryptos)
             self.allCryptos = cryptos

@@ -14,6 +14,7 @@ struct SearchCryptocurrenciesView: View {
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
             CryptoListView(
+                viewModel: viewModel,
                 state: viewModel.state,
                 lastUpdate: nil,
                 listContent: { cryptos in
@@ -28,6 +29,9 @@ struct SearchCryptocurrenciesView: View {
                 },
                 onRetry: { viewModel.fetchData()}
             )
+            .navigationDestination(for: Cryptocurrency.self) { value in
+                CryptoDetailsView(viewModel: .init(cryptoID: value.symbol))
+            }
         }
     }
 }

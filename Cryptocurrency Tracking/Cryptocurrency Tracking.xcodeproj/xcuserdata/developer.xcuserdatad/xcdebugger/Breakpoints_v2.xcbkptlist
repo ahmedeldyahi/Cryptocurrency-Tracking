@@ -39,52 +39,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "C40C9596-C7B2-4AF8-8A5E-A03A69CB8B6F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cryptocurrency Tracking/Core/Data/Network/NetworkManager.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "19"
-            endingLineNumber = "19"
-            landmarkName = "AppError"
-            landmarkType = "13">
-            <Locations>
-               <Location
-                  uuid = "C40C9596-C7B2-4AF8-8A5E-A03A69CB8B6F - e997f994081a2bd1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Cryptocurrency_Tracking.NetworkManager.decode&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(Foundation.Data) throws -&gt; &#x3c4;_0_0"
-                  moduleName = "Cryptocurrency Tracking"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/developer/Documents/Development/Side%20Projects/Cryptocurrency-Tracking/Cryptocurrency%20Tracking/Cryptocurrency%20Tracking/Core/Data/Network/NetworkManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19">
-               </Location>
-               <Location
-                  uuid = "C40C9596-C7B2-4AF8-8A5E-A03A69CB8B6F - e997f994081a2bd1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "Cryptocurrency_Tracking.NetworkManager.decode&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(Foundation.Data) throws -&gt; &#x3c4;_0_0"
-                  moduleName = "Cryptocurrency Tracking"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/developer/Documents/Development/Side%20Projects/Cryptocurrency-Tracking/Cryptocurrency%20Tracking/Cryptocurrency%20Tracking/Core/Data/Network/NetworkManager.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "19"
-                  endingLineNumber = "19">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "93442D4B-62FC-4804-8C31-A6051FBF6513"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -101,17 +55,139 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "82B48FB7-ED73-45A4-BFD3-949A29A8E9AC"
+            uuid = "D3F7BD8D-2733-444A-9307-87625F0940B5"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "Cryptocurrency Tracking/Core/UI/CryptoCardView.swift"
+            filePath = "Cryptocurrency Tracking/Core/Data/Network/NetworkManager.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "item"
-            landmarkType = "24">
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "decode(_:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D3F7BD8D-2733-444A-9307-87625F0940B5 - e997f994081a2cba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Cryptocurrency_Tracking.NetworkManager.decode&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(Foundation.Data) throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Cryptocurrency Tracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Development/Side%20Projects/Cryptocurrency-Tracking/Cryptocurrency%20Tracking/Cryptocurrency%20Tracking/Core/Data/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26">
+               </Location>
+               <Location
+                  uuid = "D3F7BD8D-2733-444A-9307-87625F0940B5 - e997f994081a2cba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Cryptocurrency_Tracking.NetworkManager.decode&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(Foundation.Data) throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Cryptocurrency Tracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Development/Side%20Projects/Cryptocurrency-Tracking/Cryptocurrency%20Tracking/Cryptocurrency%20Tracking/Core/Data/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "26"
+                  endingLineNumber = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F98B525C-380E-4FCA-AF01-53F6C1A40A9B"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cryptocurrency Tracking/Core/Data/Network/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "fetch(endpoint:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "F98B525C-380E-4FCA-AF01-53F6C1A40A9B - 6aea930b5caa2d9b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Cryptocurrency_Tracking.NetworkManager.fetch&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(endpoint: Cryptocurrency_Tracking.APIEndpointContract) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Cryptocurrency Tracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Development/Side%20Projects/Cryptocurrency-Tracking/Cryptocurrency%20Tracking/Cryptocurrency%20Tracking/Core/Data/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50">
+               </Location>
+               <Location
+                  uuid = "F98B525C-380E-4FCA-AF01-53F6C1A40A9B - d25ed373eb2acfba"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Cryptocurrency_Tracking.NetworkManager.fetch&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(endpoint: Cryptocurrency_Tracking.APIEndpointContract) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Cryptocurrency Tracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Development/Side%20Projects/Cryptocurrency-Tracking/Cryptocurrency%20Tracking/Cryptocurrency%20Tracking/Core/Data/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "50"
+                  endingLineNumber = "50">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3D0541B3-2F29-4678-8B08-3460BB495EE2"
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Cryptocurrency Tracking/Core/Data/Network/NetworkManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "52"
+            endingLineNumber = "52"
+            landmarkName = "fetch(endpoint:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3D0541B3-2F29-4678-8B08-3460BB495EE2 - 6aea930b5caa2d59"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(3) suspend resume partial function for Cryptocurrency_Tracking.NetworkManager.fetch&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(endpoint: Cryptocurrency_Tracking.APIEndpointContract) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Cryptocurrency Tracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Development/Side%20Projects/Cryptocurrency-Tracking/Cryptocurrency%20Tracking/Cryptocurrency%20Tracking/Core/Data/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52">
+               </Location>
+               <Location
+                  uuid = "3D0541B3-2F29-4678-8B08-3460BB495EE2 - d25ed373eb2acf78"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(4) suspend resume partial function for Cryptocurrency_Tracking.NetworkManager.fetch&lt;&#x3c4;_0_0 where &#x3c4;_0_0: Swift.Decodable&gt;(endpoint: Cryptocurrency_Tracking.APIEndpointContract) async throws -&gt; &#x3c4;_0_0"
+                  moduleName = "Cryptocurrency Tracking"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/developer/Documents/Development/Side%20Projects/Cryptocurrency-Tracking/Cryptocurrency%20Tracking/Cryptocurrency%20Tracking/Core/Data/Network/NetworkManager.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

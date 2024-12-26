@@ -10,34 +10,32 @@ import Combine
 import Foundation
 import SwiftUI
 
-final class CryptoDetailsViewModel: ObservableObject {
-    @Published var errorMessage: String?
+final class CryptoDetailsViewModel: BaseViewModel {
+    typealias Model = TickerModel
+    
     @Published var state: VieState<TickerModel> = .loading
     private let detailsUseCase: FetchDetailUseCase
     private let cryptoID: String
     
     init(
-        detailsUseCase: FetchDetailUseCase = FetchDetailUseCaseImpl() ,
+        detailsUseCase: FetchDetailUseCase = FetchDetailUseCaseImpl(),
         cryptoID: String
     ) {
         self.detailsUseCase = detailsUseCase
         self.cryptoID = cryptoID
         
-        fetchDetails()
+        fetchData()
     }
     
-    private func fetchDetails() {
+    func fetchData() {
         Task {
             do {
                 let detail = try await detailsUseCase.execute(id: cryptoID)
-                await MainActor.run {
-                    state = .success(detail)
-                }
+                handleSuccess(detail)
             } catch let err as AppError {
-                await MainActor.run {
-                    state = .error(err.errorDescription)
-                }
+                handleError(err)
             }
         }
+        
     }
 }

@@ -9,6 +9,7 @@ import Foundation
 import SwiftUI
 
 struct CryptoListView<Content: View>: View {
+    let viewModel: any BaseViewModel
     let state: VieState<[Cryptocurrency]>
     let lastUpdate: Date?
     let listContent: ([Cryptocurrency]) -> Content
@@ -37,8 +38,11 @@ struct CryptoListView<Content: View>: View {
                 }
                 listContent(cryptos)
             }
+            
         case .error(let errorMessage):
-            ErrorView(heading: errorMessage)
+            ErrorView(heading: errorMessage) {
+                viewModel.fetchData()
+            }
         }
     }
 }
