@@ -37,14 +37,13 @@ struct MainTabView: View {
                 }
             
             // Favorites Tab
-            //            FavoriteCryptocurrenciesView(viewModel: favoritesViewModel)
-            Text("Favorites")
+            FavoriteCryptocurrenciesView(viewModel: .init())
                 .tabItem {
                     Image(systemName: "star.fill")
                     Text("Favorites")
                 }
         }
-            .accentColor(.blue) // Customize the TabBar highlight color
+        .accentColor(.blue) // Customize the TabBar highlight color
     }
 }
 

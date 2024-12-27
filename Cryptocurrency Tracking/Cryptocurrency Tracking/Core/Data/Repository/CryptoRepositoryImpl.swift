@@ -11,24 +11,44 @@ final class CryptoRepositoryImpl: CryptoRepository {
     var networkMonitor: any NetworkMonitorContract
     private let networkService: NetworkService
     private let errorManager: ErrorManager
-
+    private let databaseService: LocalDatabaseService
+    
     init(
         networkService: NetworkService = NetworkManager(),
         networkMonitor: NetworkMonitorContract = NetworkMonitor.shared,
-        errorManager: ErrorManager = .shared
+        errorManager: ErrorManager = .shared,
+        databaseService: LocalDatabaseService = CoreDataService.shared
     ) {
         self.networkService = networkService
         self.networkMonitor = networkMonitor
         self.errorManager = errorManager
+        self.databaseService = databaseService
     }
-
-    func search(for query: String) async -> Result<[Cryptocurrency], AppError> {
-        await fetch(endpoint: APIEndpoint.search(query))
-    }
-
+    
     func fetchPrices() async -> Result<[Cryptocurrency], AppError> {
-        await fetch(endpoint: APIEndpoint.cryptocurrencies)
+        let result: Result<[Cryptocurrency], AppError> = await fetch(endpoint: APIEndpoint.cryptocurrencies)
         
+        switch result {
+        case .success(let cryptocurrencies):
+            // Merge local favorites into the fetched list
+            let updatedCryptocurrencies = mergeWithLocalFavorites(cryptocurrencies: cryptocurrencies)
+            return .success(updatedCryptocurrencies)
+        case .failure(let error):
+            return .failure(error)
+        }
+    }
+    
+    private func mergeWithLocalFavorites(cryptocurrencies: [Cryptocurrency]) -> [Cryptocurrency] {
+        // Fetch all local favorites
+        let favoriteSymbols = databaseService.fetchAllFavorites().map { $0.symbol }
+        
+        // Update the remote list based on local favorite symbols
+        
+        return cryptocurrencies.map { crypto in
+            var updatedCrypto = crypto
+            updatedCrypto.isFavorite = favoriteSymbols.contains(crypto.symbol)
+            return updatedCrypto
+        }
     }
     
     func fetchCryptoDetails(id: String) async -> Result<TickerModel, AppError> {
@@ -41,26 +61,45 @@ extension CryptoRepositoryImpl {
         guard checkInternetConnection() else {
             return .failure(.offline)
         }
-
+        
         do {
-            // Handle the optional case by unwrapping the result or throwing an error
             guard let result: T = try await networkService.fetch(endpoint: endpoint) else {
-                return .failure(.decodingFailed) // Handle a nil response as a decoding failure
+                return .failure(.decodingFailed)
             }
             return .success(result)
         } catch let error as AppError {
-            // Log and return known network errors
             logError(endpoint: endpoint, error: error)
             return .failure(error)
         } catch {
-            // Catch and wrap unexpected errors
             let unknownError = AppError.unknown(message: error.localizedDescription)
             logError(endpoint: endpoint, error: unknownError)
             return .failure(unknownError)
         }
     }
-
+    
     private func logError(endpoint: APIEndpoint, error: AppError) {
         print("Handled Network Error for \(endpoint.path): \(error.errorDescription)")
+    }
+}
+
+class FavoritesRepository: CryptoRepositoryContract {
+    private let errorManager: ErrorManager
+    private let databaseService: LocalDatabaseService
+    
+    init(
+        errorManager: ErrorManager = .shared,
+        databaseService: LocalDatabaseService = CoreDataService.shared
+    ) {
+        self.errorManager = errorManager
+        self.databaseService = databaseService
+    }
+    
+    func fetchPrices() async -> Result<[Cryptocurrency], AppError> {
+        let cryptos = databaseService.fetchAllFavorites()
+        if cryptos.isEmpty {
+            return Result.failure(.empty)
+        }else{
+            return Result.success(cryptos.map {$0.toEntity()})
+        }
     }
 }

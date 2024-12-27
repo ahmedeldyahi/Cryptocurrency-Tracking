@@ -7,15 +7,11 @@
 
 import SwiftUI
 
-import SwiftUI
-//import RealmSwift
-
 struct CryptoCardView: View {
-    let crypto: Cryptocurrency
+    @State var crypto: Cryptocurrency
     let onTap: () -> Void
-    @State private var isFavorite = false
     
-//    private let realmManager = RealmManager()
+    private let realmManager = CoreDataService.shared
 
     var body: some View {
         RoundedRectangle(cornerRadius: 12)
@@ -23,9 +19,6 @@ struct CryptoCardView: View {
             .frame(height: 80)
             .overlay {
                 item
-            }
-            .onAppear {
-//                isFavorite = realmManager.isFavorite(symbol: crypto.symbol)
             }
     }
     
@@ -69,21 +62,17 @@ struct CryptoCardView: View {
     
     private var favoriteButton: some View {
         Button(action: toggleFavorite) {
-            Image(systemName: isFavorite ? "heart.fill" : "heart")
-                .foregroundColor(isFavorite ? .red : .gray)
-                .scaleEffect(isFavorite ? 1.2 : 1.0)
-                .animation(.easeInOut, value: isFavorite)
+            Image(systemName: crypto.isFavorite! ? "heart.fill" : "heart")
+                .foregroundColor(crypto.isFavorite! ? .red : .gray)
+                .scaleEffect(crypto.isFavorite! ? 1.2 : 1.0)
+                .animation(.easeInOut, value: crypto.isFavorite!)
         }
         .buttonStyle(BorderlessButtonStyle()) 
     }
     
     private func toggleFavorite() {
-        isFavorite.toggle()
-//        if isFavorite {
-//            realmManager.addToFavorites(crypto: crypto)
-//        } else {
-//            realmManager.removeFromFavorites(symbol: crypto.symbol)
-//        }
+        realmManager.toggleFavorite(crypto: crypto)
+        crypto.isFavorite!.toggle()
     }
 }
 
@@ -95,6 +84,7 @@ struct CryptoCardView: View {
 }
 
 let CR1 = Cryptocurrency(symbol: "BTC_USDD", price: "99000", time: 1735078594260, dailyChange: "0.0465", ts: 1735078594273)
+
 struct DailyChangeView: View {
     let dailyChage: Double
     let dailyChangeFormatted: String
@@ -110,12 +100,3 @@ struct DailyChangeView: View {
             }
     }
 }
-
-//struct DailyChangeView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        DailyChangeView(
-//            dailyChage: 23.4,
-//            dailyChangeFormatted: "23.40%"
-//        )
-//    }
-//}

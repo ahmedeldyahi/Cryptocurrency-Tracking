@@ -7,47 +7,35 @@
 
 import SwiftUI
 
-//struct FavoriteCryptocurrenciesView: View {
-//    @StateObject var viewModel = FavoritesViewModel()
-//
-//    var body: some View {
-//        NavigationStack {
-//            VStack {
-//                if viewModel.cryptocurrencies.filter(\.isFavorite).isEmpty {
-//                    Text("No favorites added.")
-//                        .font(.headline)
-//                        .foregroundColor(.gray)
-//                        .padding()
-//                } else {
-//                    List(viewModel.cryptocurrencies.filter(\.isFavorite)) { crypto in
-//                        HStack {
-//                            VStack(alignment: .leading, spacing: 4) {
-//                                Text(crypto.name)
-//                                    .font(.headline)
-//                                Text(crypto.symbol.uppercased())
-//                                    .font(.subheadline)
-//                                    .foregroundColor(.gray)
-//                            }
-//                            Spacer()
-////                            Text(String(format: "$%.2f", crypto.price))
-////                                .font(.headline)
-//
-//                            Button(action: {
-//                                viewModel.toggleFavorite(id: crypto.id)
-//                            }) {
-//                                Image(systemName: "star.fill")
-//                                    .foregroundColor(.yellow)
-//                            }
-//                            .buttonStyle(BorderlessButtonStyle())
-//                        }
-//                        .padding(.vertical, 8)
-//                    }
-//                }
-//            }
-//            .navigationTitle("Favorites")
-//        }
-//    }
-//}
-//#Preview {
-//    FavoriteCryptocurrenciesView()
-//}
+struct FavoriteCryptocurrenciesView: View {
+    @ObservedObject var viewModel: FavoritesViewModel
+    @StateObject var coordinator: AppCoordinator = AppCoordinator()
+    
+    var body: some View {
+        NavigationStack(path: $coordinator.navigationPath) {
+            CryptoListView(
+                viewModel: viewModel,
+                state: viewModel.state,
+                lastUpdate: nil,
+                listContent: { cryptos in
+                    List(cryptos, id: \.symbol) { crypto in
+                        CryptoCardView(crypto: crypto) {
+                            coordinator.showDetails(for: crypto)
+                        }
+                    }
+                    .listStyle(.plain)
+                    .navigationTitle("Favorites")
+                },
+                onRetry: { viewModel.fetchData()}
+            )
+            .navigationDestination(for: Cryptocurrency.self) { value in
+                CryptoDetailsView(viewModel: .init(cryptoID: value.symbol))
+            }
+        }
+        .onAppear(perform: viewModel.fetchData)
+    }
+}
+
+#Preview {
+    FavoriteCryptocurrenciesView(viewModel: .init())
+}

@@ -47,15 +47,12 @@ enum HTTPMethod: String {
 
 enum APIEndpoint: APIEndpointContract {
     case cryptocurrencies
-    case search(String)
     case detail(String)
     
     var path: String {
         return switch self {
         case .cryptocurrencies:
             "/price"
-        case .search:
-            "/search"
             
         case .detail(let id):
             "/\(id)/ticker24h"
@@ -65,3 +62,4 @@ enum APIEndpoint: APIEndpointContract {
     var queryItems: [URLQueryItem]? {return []}
     
 }
+

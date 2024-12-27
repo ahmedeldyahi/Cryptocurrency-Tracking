@@ -15,9 +15,9 @@ protocol FetchPricesUseCase {
 }
 
 final class FetchPricesUseCaseImpl: FetchPricesUseCase {
-    private let repository: CryptoRepository
+    private let repository: CryptoRepositoryContract
     
-    init(repository: CryptoRepository = CryptoRepositoryImpl()) {
+    init(repository: CryptoRepositoryContract = CryptoRepositoryImpl()) {
         self.repository = repository
     }
     

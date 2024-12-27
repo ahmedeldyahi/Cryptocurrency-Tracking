@@ -32,7 +32,6 @@ class BaseCryptoViewModel: BaseViewModel {
     typealias Model = [Cryptocurrency]
     @Published var state: VieState<Model> = .idle
     private let fetchUseCase: FetchPricesUseCase
-    private var cancellables = Set<AnyCancellable>()
 
     init(fetchUseCase: FetchPricesUseCase = FetchPricesUseCaseImpl()) {
         self.fetchUseCase = fetchUseCase

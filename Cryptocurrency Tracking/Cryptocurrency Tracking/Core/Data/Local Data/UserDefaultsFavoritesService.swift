@@ -33,3 +33,84 @@ final class UserDefaultsFavoritesService: FavoritesService {
         defaults.array(forKey: favoritesKey) as? [String] ?? []
     }
 }
+
+protocol LocalDatabaseService {
+    func toggleFavorite(crypto:  Cryptocurrency)
+    func isFavorite(crypto: Cryptocurrency) -> Bool
+    func fetchAllFavorites() -> [CryptocurrencyEntity]
+}
+
+import CoreData
+
+final class CoreDataService: LocalDatabaseService {
+    
+    static let shared = CoreDataService() // Singleton instance
+    private let container: NSPersistentContainer
+    
+    private init() {
+        container = NSPersistentContainer(name: "Model")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError("Core Data stack initialization failed: \(error)")
+            }
+        }
+    }
+    
+    private var context: NSManagedObjectContext {
+        container.viewContext
+    }
+    
+    // Toggle favorite status
+    func toggleFavorite(crypto: Cryptocurrency) {
+        if let existing = fetchFavorite(symbol: crypto.symbol) {
+            context.delete(existing)
+        } else {
+            let entity = CryptocurrencyEntity(context: context)
+            entity.symbol = crypto.symbol
+            entity.dailyChange = crypto.dailyChange
+            entity.price = crypto.symbol
+            entity.time = crypto.time
+            entity.ts = crypto.ts
+        }
+        saveContext()
+    }
+    
+    // Check if a cryptocurrency is a favorite
+    func isFavorite(crypto: Cryptocurrency) -> Bool {
+        fetchFavorite(symbol: crypto.symbol) != nil
+    }
+    
+    func fetchAllFavorites() -> [CryptocurrencyEntity] {
+        let request: NSFetchRequest<CryptocurrencyEntity> = CryptocurrencyEntity.fetchRequest()
+        return (try? context.fetch(request)) ?? []
+    }
+    
+    // MARK: - Private Helpers
+    
+    private func fetchFavorite(symbol: String) -> CryptocurrencyEntity? {
+        let request: NSFetchRequest<CryptocurrencyEntity> = CryptocurrencyEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "symbol == %@", symbol)
+        return (try? context.fetch(request))?.first
+    }
+
+    
+    private func saveContext() {
+        if context.hasChanges {
+            do {
+                try context.save()
+            } catch {
+                fatalError("Failed to save Core Data context: \(error)")
+            }
+        }
+    }
+}
+
+
+extension CryptocurrencyEntity {
+  
+    func toEntity() -> Cryptocurrency {
+        Cryptocurrency(symbol: self.symbol ?? "", price: self.price ?? "", time: self.time, dailyChange: self.dailyChange ?? "", ts: self.ts, isFavorite: true)
+    }
+    
+}
+
