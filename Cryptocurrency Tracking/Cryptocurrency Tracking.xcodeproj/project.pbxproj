@@ -63,6 +63,7 @@
 		8BF7E4D22D1EE7E300C9704B /* MockFetchDetailUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7E4D12D1EE7E300C9704B /* MockFetchDetailUseCase.swift */; };
 		8BF7E4D42D1EEA6300C9704B /* FavoritesViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7E4D32D1EEA6300C9704B /* FavoritesViewModelTests.swift */; };
 		8BF7E4D72D1EEF5D00C9704B /* CryptoRepositoryTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7E4D62D1EEF5D00C9704B /* CryptoRepositoryTests.swift */; };
+		8BF7E4D92D1F477C00C9704B /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8BF7E4D82D1F477C00C9704B /* Configuration.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -135,6 +136,7 @@
 		8BF7E4D12D1EE7E300C9704B /* MockFetchDetailUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchDetailUseCase.swift; sourceTree = "<group>"; };
 		8BF7E4D32D1EEA6300C9704B /* FavoritesViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewModelTests.swift; sourceTree = "<group>"; };
 		8BF7E4D62D1EEF5D00C9704B /* CryptoRepositoryTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CryptoRepositoryTests.swift; sourceTree = "<group>"; };
+		8BF7E4D82D1F477C00C9704B /* Configuration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Configuration.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -377,6 +379,7 @@
 				8BD135312D16EEF0008913D4 /* APIEndpoint.swift */,
 				8BD135332D16EF22008913D4 /* NetworkManager.swift */,
 				8B5E892B2D1ACE8F00DE5700 /* NetworkMonitor.swift */,
+				8BF7E4D82D1F477C00C9704B /* Configuration.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -702,6 +705,7 @@
 				8B394A322D1C58B600B42FAB /* BaseViewModel.swift in Sources */,
 				8BD135702D18A8E3008913D4 /* CryptoCardView.swift in Sources */,
 				8B8F31562D19D7C1003AF235 /* Color.swift in Sources */,
+				8BF7E4D92D1F477C00C9704B /* Configuration.swift in Sources */,
 				8BD135542D176342008913D4 /* FavoriteCryptocurrenciesView.swift in Sources */,
 				8BD135302D16EED0008913D4 /* NetworkService.swift in Sources */,
 				8B394A392D1CDFB300B42FAB /* Model.xcdatamodeld in Sources */,

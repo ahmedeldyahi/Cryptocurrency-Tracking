@@ -15,13 +15,11 @@ protocol APIEndpointContract{
     var queryItems: [URLQueryItem]? {get}
 }
 
-var baseURL: URL {
-    return URL(string: "https://api.poloniex.com/markets/")!
-}
 
 extension APIEndpointContract {
     var urlRequest: URLRequest? {
         var components = URLComponents()
+        let baseURL = Configuration.baseURL
         components.scheme = baseURL.scheme
         components.host = baseURL.host
         components.path = baseURL.path + path

@@ -7,18 +7,7 @@
 
 import SwiftUI
 
-struct MainTabView: View {
-    // Instantiate ViewModels
-    //    private let searchViewModel: CryptoSearchViewModel
-    //    private let realTimePricesViewModel: CryptoSearchViewModel // Reuse or create a new ViewModel
-    //    private let favoritesViewModel: CryptoSearchViewModel
-    //
-    //    init(dependencyContainer: AppDependencyContainer) {
-    //        self.searchViewModel = dependencyContainer.makeCryptoSearchViewModel()
-    //        self.realTimePricesViewModel = dependencyContainer.makeCryptoSearchViewModel() // Mocked data or real use case
-    //        self.favoritesViewModel = dependencyContainer.makeCryptoSearchViewModel()
-    //    }
-    
+struct MainTabView: View {    
     @StateObject var coordinator: AppCoordinator = AppCoordinator()
     var body: some View {
         TabView {
@@ -43,7 +32,6 @@ struct MainTabView: View {
                     Text("Favorites")
                 }
         }
-        .accentColor(.blue) // Customize the TabBar highlight color
     }
 }
 
