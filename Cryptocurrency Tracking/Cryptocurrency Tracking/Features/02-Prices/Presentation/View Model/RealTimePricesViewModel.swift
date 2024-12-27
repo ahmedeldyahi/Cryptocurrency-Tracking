@@ -9,15 +9,18 @@ import Combine
 import Foundation
 class RealTimePricesViewModel: BaseCryptoViewModel {
     @Published var lastUpdate: Date = .now
-    private var timerCancellable: AnyCancellable?
+    private(set) var timerCancellable: AnyCancellable?
+    private var timerInterval: TimeInterval
 
-    override init(fetchUseCase: FetchPricesUseCase = FetchPricesUseCaseImpl()) {
+    // Allowing a custom interval for testing
+    init(fetchUseCase: FetchPricesUseCase = FetchPricesUseCaseImpl(), timerInterval: TimeInterval = 30.0) {
+        self.timerInterval = timerInterval
         super.init(fetchUseCase: fetchUseCase)
         startAutoRefresh()
     }
 
     private func startAutoRefresh() {
-        timerCancellable = Timer.publish(every: 30.0, on: .main, in: .common)
+        timerCancellable = Timer.publish(every: timerInterval, on: .main, in: .common)
             .autoconnect()
             .sink { [weak self] _ in
                 self?.fetchData()
@@ -29,5 +32,4 @@ class RealTimePricesViewModel: BaseCryptoViewModel {
         timerCancellable?.cancel()
     }
 }
-
 

@@ -8,7 +8,7 @@ import Combine
 import Foundation
 
 protocol BaseViewModel: ObservableObject {
-    associatedtype Model
+    associatedtype Model: Equatable
     var state: VieState<Model> { get set }
     func fetchData()
   
@@ -32,13 +32,14 @@ extension BaseViewModel {
 class BaseCryptoViewModel: BaseViewModel {
   
     typealias Model = [Cryptocurrency]
-    private var data: [Cryptocurrency] = [] {
+    var data: [Cryptocurrency] = [] { // Allow read-access for extensions and tests
         didSet {
             handleSuccess(data)
         }
     }
+    
     @Published var state: VieState<Model> = .idle
-    private let fetchUseCase: FetchPricesUseCase
+    private(set) var fetchUseCase: FetchPricesUseCase
     
     init(fetchUseCase: FetchPricesUseCase = FetchPricesUseCaseImpl()) {
         self.fetchUseCase = fetchUseCase

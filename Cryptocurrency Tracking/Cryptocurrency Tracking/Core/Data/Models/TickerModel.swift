@@ -8,7 +8,7 @@
 import Foundation
 
 // MARK: - TickerModel
-struct TickerModel: Codable {
+struct TickerModel: Codable,Equatable {
     let symbol, open, low, high: String
     let close, quantity, amount: String
     let tradeCount, startTime, closeTime: Int

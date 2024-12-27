@@ -1,39 +1,11 @@
 //
-//  UserDefaultsFavoritesService.swift
+//  LocalDatabaseService.swift
 //  Cryptocurrency Tracking
 //
 //  Created by Ahmed Eldyahi on 22/12/2024.
 //
 
 import Foundation
-
-final class UserDefaultsFavoritesService: FavoritesService {
-    private let favoritesKey = "favoriteCryptocurrencies"
-    private let defaults = UserDefaults.standard
-    
-    func isFavorite(id: String) -> Bool {
-        let favorites = fetchFavorites()
-        return favorites.contains(id)
-    }
-    
-    func addFavorite(id: String) {
-        var favorites = fetchFavorites()
-        guard !favorites.contains(id) else { return }
-        favorites.append(id)
-        defaults.set(favorites, forKey: favoritesKey)
-    }
-    
-    func removeFavorite(id: String) {
-        var favorites = fetchFavorites()
-        favorites.removeAll { $0 == id }
-        defaults.set(favorites, forKey: favoritesKey)
-    }
-    
-    func fetchFavorites() -> [String] {
-        defaults.array(forKey: favoritesKey) as? [String] ?? []
-    }
-}
-
 protocol LocalDatabaseService {
     func toggleFavorite(crypto:  Cryptocurrency)
     func isFavorite(crypto: Cryptocurrency) -> Bool
@@ -50,6 +22,21 @@ final class CoreDataService: LocalDatabaseService {
     private init(notifier: Notifier = CryptoNotifier()) {
         self.notifier = notifier
         container = NSPersistentContainer(name: "Model")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError("Core Data stack initialization failed: \(error)")
+            }
+        }
+    }
+    
+    /// Internal initializer for testing
+    internal init(
+        notifier: Notifier = CryptoNotifier(),
+        persistentStoreDescription: NSPersistentStoreDescription
+    ) {
+        self.notifier = notifier
+        container = NSPersistentContainer(name: "Model")
+        container.persistentStoreDescriptions = [persistentStoreDescription]
         container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Core Data stack initialization failed: \(error)")
@@ -97,7 +84,7 @@ final class CoreDataService: LocalDatabaseService {
         request.predicate = NSPredicate(format: "symbol == %@", symbol)
         return (try? context.fetch(request))?.first
     }
-
+    
     
     private func saveContext() {
         if context.hasChanges {
@@ -112,7 +99,6 @@ final class CoreDataService: LocalDatabaseService {
 
 
 extension CryptocurrencyEntity {
-  
     func toEntity() -> Cryptocurrency {
         Cryptocurrency(symbol: self.symbol ?? "", price: self.price ?? "", time: self.time, dailyChange: self.dailyChange ?? "", ts: self.ts, isFavorite: true)
     }
