@@ -12,9 +12,9 @@ protocol FetchDetailUseCase {
 }
 
 final class FetchDetailUseCaseImpl: FetchDetailUseCase {
-    private let repository: CryptoRepository
+    private let repository: DetailRepository
     
-    init(repository: CryptoRepository = CryptoRepositoryImpl()) {
+    init(repository: DetailRepository = CryptoDetailsRepositoryImpl()) {
         self.repository = repository
     }
     

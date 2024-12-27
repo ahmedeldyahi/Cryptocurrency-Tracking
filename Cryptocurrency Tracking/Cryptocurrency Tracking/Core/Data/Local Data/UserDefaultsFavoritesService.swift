@@ -46,8 +46,9 @@ final class CoreDataService: LocalDatabaseService {
     
     static let shared = CoreDataService() // Singleton instance
     private let container: NSPersistentContainer
-    
-    private init() {
+    private let notifier: Notifier
+    private init(notifier: Notifier = CryptoNotifier()) {
+        self.notifier = notifier
         container = NSPersistentContainer(name: "Model")
         container.loadPersistentStores { _, error in
             if let error = error {
@@ -62,17 +63,21 @@ final class CoreDataService: LocalDatabaseService {
     
     // Toggle favorite status
     func toggleFavorite(crypto: Cryptocurrency) {
+        var favorite: Bool
         if let existing = fetchFavorite(symbol: crypto.symbol) {
             context.delete(existing)
+            favorite = false
         } else {
             let entity = CryptocurrencyEntity(context: context)
             entity.symbol = crypto.symbol
             entity.dailyChange = crypto.dailyChange
-            entity.price = crypto.symbol
+            entity.price = crypto.price
             entity.time = crypto.time
             entity.ts = crypto.ts
+            favorite  = true
         }
         saveContext()
+        notifier.postNotification(crypto: (crypto.symbol, favorite))
     }
     
     // Check if a cryptocurrency is a favorite

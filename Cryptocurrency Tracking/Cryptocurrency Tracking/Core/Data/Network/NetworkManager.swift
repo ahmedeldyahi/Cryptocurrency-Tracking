@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 final class NetworkManager: NetworkService {
     private let session: URLSessionProtocol
     private let decoder: JSONDecoder
@@ -18,16 +17,6 @@ final class NetworkManager: NetworkService {
         self.decoder.keyDecodingStrategy = .convertFromSnakeCase
     }
     
-    // Decode a response in a type-safe manner
-    private func decode<T: Decodable>(_ data: Data) throws -> T {
-        do {
-            return try decoder.decode(T.self, from: data)
-        } catch {
-            throw AppError.decodingFailed
-        }
-    }
-    
-    // Main Fetch Method with async/await and Enhanced Error Handling
     func fetch<T: Decodable>(endpoint: APIEndpointContract) async throws -> T {
         guard let urlRequest = endpoint.urlRequest else {
             throw AppError.badURL
@@ -50,6 +39,18 @@ final class NetworkManager: NetworkService {
             throw error
         } catch {
             throw AppError.unknown(message: error.localizedDescription)
+        }
+    }
+}
+
+
+extension NetworkManager {
+    // Decode a response in a type-safe manner
+    private func decode<T: Decodable>(_ data: Data) throws -> T {
+        do {
+            return try decoder.decode(T.self, from: data)
+        } catch {
+            throw AppError.decodingFailed
         }
     }
 }

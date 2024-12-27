@@ -7,32 +7,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "38C74F59-52D4-49D2-BF48-EE22440537FD"
+            uuid = "B66C26FD-A189-48DD-B97E-EF9E1092847C"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Cryptocurrency Tracking/Core/Data/Local Data/UserDefaultsFavoritesService.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "80"
-            endingLineNumber = "80"
-            landmarkName = "isFavorite(crypto:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "D6E6AB7A-68CF-42D4-A0DE-0620222548CF"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Cryptocurrency Tracking/Core/Data/Local Data/UserDefaultsFavoritesService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "toggleFavorite(crypto:)"
+            startingLineNumber = "117"
+            endingLineNumber = "117"
+            landmarkName = "toEntity()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

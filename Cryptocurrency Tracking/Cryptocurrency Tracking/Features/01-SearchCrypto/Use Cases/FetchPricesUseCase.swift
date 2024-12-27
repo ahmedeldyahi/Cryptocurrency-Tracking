@@ -8,8 +8,6 @@
 import Foundation
 import Combine
 
-
-
 protocol FetchPricesUseCase {
     func execute() async throws -> [Cryptocurrency]
 }

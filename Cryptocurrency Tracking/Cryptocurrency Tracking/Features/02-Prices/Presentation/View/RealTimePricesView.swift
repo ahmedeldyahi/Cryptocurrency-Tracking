@@ -14,19 +14,18 @@ struct RealTimePricesView: View {
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
             CryptoListView(
-                viewModel: viewModel, 
                 state: viewModel.state,
                 lastUpdate: viewModel.lastUpdate,
+                retry: viewModel.fetchData,
                 listContent: { cryptos in
                     List(cryptos, id: \.symbol) { crypto in
-                        CryptoCardView(crypto: crypto) {
+                        CryptoCardView(crypto: .constant(crypto)) {
                             coordinator.showDetails(for: crypto)
                         }
                     }
                     .listStyle(.plain)
-                    .navigationTitle("Cryptos")
-                },
-                onRetry: { viewModel.fetchData() }
+                    .navigationTitle("Prices")
+                }
             ).navigationDestination(for: Cryptocurrency.self) { value in
                 CryptoDetailsView(viewModel: .init(cryptoID: value.symbol))
             }

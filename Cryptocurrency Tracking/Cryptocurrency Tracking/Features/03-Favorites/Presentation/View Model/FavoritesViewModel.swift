@@ -13,9 +13,11 @@ final class FavoritesViewModel: BaseCryptoViewModel {
 
     override init(fetchUseCase: FetchPricesUseCase = FetchPricesUseCaseImpl(repository: FavoritesRepository())) {
         super.init(fetchUseCase: fetchUseCase)
-    }
-//    
+    } 
  
+    override func onChange(symbol: String, isFavorite: Bool) {
+        fetchData()
+    }
 }
 
 

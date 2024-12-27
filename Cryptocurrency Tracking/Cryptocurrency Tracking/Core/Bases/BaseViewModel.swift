@@ -11,6 +11,7 @@ protocol BaseViewModel: ObservableObject {
     associatedtype Model
     var state: VieState<Model> { get set }
     func fetchData()
+  
 }
 
 extension BaseViewModel {
@@ -19,7 +20,7 @@ extension BaseViewModel {
             self.state = .success(result)
         }
     }
-
+    
     func handleError(_ error: AppError) {
         DispatchQueue.main.async {
             self.state = .error(error.errorDescription)
@@ -29,21 +30,48 @@ extension BaseViewModel {
 
 
 class BaseCryptoViewModel: BaseViewModel {
+  
     typealias Model = [Cryptocurrency]
+    private var data: [Cryptocurrency] = [] {
+        didSet {
+            handleSuccess(data)
+        }
+    }
     @Published var state: VieState<Model> = .idle
     private let fetchUseCase: FetchPricesUseCase
-
+    
     init(fetchUseCase: FetchPricesUseCase = FetchPricesUseCaseImpl()) {
         self.fetchUseCase = fetchUseCase
         fetchData()
+        observe()
     }
-
+    
+    func observe() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(handleNotification(_:)),
+            name: .CryptoChange,
+            object: nil
+        )
+    }
+    
+    func onChange(symbol: String, isFavorite: Bool) {
+        self.data = self.data.map { item in
+            var updatedItem = item
+            if item.symbol == symbol {
+                updatedItem.isFavorite = isFavorite
+            }
+            return updatedItem
+        }
+    }
+    
     func fetchData() {
         state = .loading
         Task {
             do {
                 let cryptos = try await fetchUseCase.execute()
-                handleSuccess(cryptos)
+                self.data = cryptos
+                
             } catch let err as AppError {
                 handleError(err)
             }
@@ -55,10 +83,28 @@ class BaseCryptoViewModel: BaseViewModel {
             self.state = .success(cryptos)
         }
     }
-
+    
     func handleError(_ error: AppError) {
         DispatchQueue.main.async {
             self.state = .error(error.errorDescription)
         }
     }
+    
+    @objc private func handleNotification(_ notification: Notification) {
+        guard let userInfo = notification.userInfo,
+               let symbol = userInfo["symbol"] as? String,
+               let isFavorite = userInfo["isFavorite"] as? Bool else {
+             print("Failed to parse notification userInfo as (String, Bool).")
+             return
+         }
+         
+         let tuple: (String, Bool) = (symbol, isFavorite)
+        onChange(symbol: tuple.0, isFavorite: tuple.1)
+         print("Parsed Tuple: \(tuple)")
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: .CryptoChange, object: nil)
+    }
+
 }

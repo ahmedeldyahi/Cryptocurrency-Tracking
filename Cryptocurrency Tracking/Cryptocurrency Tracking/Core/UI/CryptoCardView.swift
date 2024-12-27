@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct CryptoCardView: View {
-    @State var crypto: Cryptocurrency
+    @Binding var crypto: Cryptocurrency
     let onTap: () -> Void
     
     private let realmManager = CoreDataService.shared
@@ -77,7 +77,7 @@ struct CryptoCardView: View {
 }
 
 #Preview {
-    CryptoCardView(crypto: CR1) {
+    CryptoCardView(crypto: .constant(CR1)) {
         
     }.padding(/*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
     

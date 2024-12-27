@@ -14,19 +14,18 @@ struct FavoriteCryptocurrenciesView: View {
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
             CryptoListView(
-                viewModel: viewModel,
                 state: viewModel.state,
                 lastUpdate: nil,
+                retry: nil,
                 listContent: { cryptos in
                     List(cryptos, id: \.symbol) { crypto in
-                        CryptoCardView(crypto: crypto) {
+                        CryptoCardView(crypto: .constant(crypto)) {
                             coordinator.showDetails(for: crypto)
                         }
                     }
                     .listStyle(.plain)
                     .navigationTitle("Favorites")
-                },
-                onRetry: { viewModel.fetchData()}
+                }
             )
             .navigationDestination(for: Cryptocurrency.self) { value in
                 CryptoDetailsView(viewModel: .init(cryptoID: value.symbol))

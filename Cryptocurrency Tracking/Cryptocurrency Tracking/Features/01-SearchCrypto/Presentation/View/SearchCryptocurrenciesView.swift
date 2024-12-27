@@ -14,20 +14,18 @@ struct SearchCryptocurrenciesView: View {
     var body: some View {
         NavigationStack(path: $coordinator.navigationPath) {
             CryptoListView(
-                viewModel: viewModel,
                 state: viewModel.state,
-                lastUpdate: nil,
+                lastUpdate: nil, retry: viewModel.fetchData,
                 listContent: { cryptos in
                     List(cryptos, id: \.symbol) { crypto in
-                        CryptoCardView(crypto: crypto) {
+                        CryptoCardView(crypto: .constant(crypto)) {
                             coordinator.showDetails(for: crypto)
                         }
                     }
                     .listStyle(.plain)
                     .searchable(text: $viewModel.searchText)
                     .navigationTitle("Cryptos")
-                },
-                onRetry: { viewModel.fetchData()}
+                }
             )
             .navigationDestination(for: Cryptocurrency.self) { value in
                 CryptoDetailsView(viewModel: .init(cryptoID: value.symbol))
