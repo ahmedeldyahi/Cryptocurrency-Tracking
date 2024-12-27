@@ -8,11 +8,11 @@
 import Foundation
 
 class FavoritesRepository: CryptoRepositoryContract {
-    private let errorManager: ErrorManager
+    private let errorManager: ErrorManagerContract
     private let databaseService: LocalDatabaseService
     
     init(
-        errorManager: ErrorManager = .shared,
+        errorManager: ErrorManagerContract = ErrorManager.shared,
         databaseService: LocalDatabaseService = CoreDataService.shared
     ) {
         self.errorManager = errorManager
@@ -24,7 +24,7 @@ class FavoritesRepository: CryptoRepositoryContract {
         if cryptos.isEmpty {
             return Result.failure(.empty)
         }else{
-            return Result.success(cryptos.map {$0.toEntity()})
+            return Result.success(cryptos)
         }
     }
 }

@@ -41,7 +41,14 @@ protocol NetworkMonitorContract {
 import SwiftUI
 import Combine
 
-final class ErrorManager: ObservableObject {
+protocol ErrorManagerContract {
+    var currentError: String? {get}
+    func showError(_ message: String)
+    func clearError()
+    
+}
+
+final class ErrorManager: ObservableObject,ErrorManagerContract {
     static let shared = ErrorManager()
     
     @Published var currentError: String? = nil

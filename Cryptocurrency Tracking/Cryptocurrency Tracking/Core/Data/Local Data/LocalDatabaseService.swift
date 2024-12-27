@@ -9,7 +9,7 @@ import Foundation
 protocol LocalDatabaseService {
     func toggleFavorite(crypto:  Cryptocurrency)
     func isFavorite(crypto: Cryptocurrency) -> Bool
-    func fetchAllFavorites() -> [CryptocurrencyEntity]
+    func fetchAllFavorites() -> [Cryptocurrency]
 }
 
 import CoreData
@@ -72,9 +72,13 @@ final class CoreDataService: LocalDatabaseService {
         fetchFavorite(symbol: crypto.symbol) != nil
     }
     
-    func fetchAllFavorites() -> [CryptocurrencyEntity] {
+    func fetchAllFavorites() -> [Cryptocurrency] {
         let request: NSFetchRequest<CryptocurrencyEntity> = CryptocurrencyEntity.fetchRequest()
-        return (try? context.fetch(request)) ?? []
+        let entities =  (try? context.fetch(request)) ?? []
+        return  entities.map {$0.toEntity()
+    }
+
+        
     }
     
     // MARK: - Private Helpers

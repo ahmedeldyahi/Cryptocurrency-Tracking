@@ -26,20 +26,3 @@ final class MockFetchPricesUseCase: FetchPricesUseCase {
     }
 }
 
-extension Notification.Name {
-    static let CryptoChange = Notification.Name("CryptoChange")
-}
-
-let sampleCryptos: [Cryptocurrency] = [
-    Cryptocurrency(symbol: "BTC", price: "10000", time: 12345, dailyChange: "0.05", ts: 67890, isFavorite: false),
-    Cryptocurrency(symbol: "ETH", price: "5000", time: 54321, dailyChange: "0.02", ts: 98765, isFavorite: false),
-]
-
-
-let favoriteCryptos: [Cryptocurrency] = [
-    Cryptocurrency(symbol: "BTC", price: "10000", time: 12345, dailyChange: "0.05", ts: 67890, isFavorite: true),
-    Cryptocurrency(symbol: "ETH", price: "5000", time: 54321, dailyChange: "0.02", ts: 98765, isFavorite: false),
-]
-
-
-let filteredCryptos = sampleCryptos.filter { $0.symbol.contains("BTC") }
