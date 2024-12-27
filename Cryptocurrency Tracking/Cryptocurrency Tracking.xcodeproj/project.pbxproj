@@ -236,13 +236,6 @@
 			path = Presentation;
 			sourceTree = "<group>";
 		};
-		8BCA23DE2D1EC70000DE56C3 /* Use Cases */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Use Cases";
-			sourceTree = "<group>";
-		};
 		8BCA23DF2D1EC73600DE56C3 /* Repository */ = {
 			isa = PBXGroup;
 			children = (
@@ -396,18 +389,9 @@
 		8BD135382D16F0DD008913D4 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
-				8BD1353D2D16F1CA008913D4 /* Interfaces */,
-			);
-			path = Domain;
-			sourceTree = "<group>";
-		};
-		8BD1353D2D16F1CA008913D4 /* Interfaces */ = {
-			isa = PBXGroup;
-			children = (
-				8BCA23DE2D1EC70000DE56C3 /* Use Cases */,
 				8BD1353F2D16F20A008913D4 /* Repository */,
 			);
-			path = Interfaces;
+			path = Domain;
 			sourceTree = "<group>";
 		};
 		8BD1353F2D16F20A008913D4 /* Repository */ = {
