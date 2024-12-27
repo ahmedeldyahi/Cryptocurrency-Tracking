@@ -1,4 +1,4 @@
-# Cryptocurrency Tracker - iOS App
+# Cryptocurrency Tracker
 
 **Overview**
 
