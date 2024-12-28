@@ -32,7 +32,7 @@ extension BaseViewModel {
 class BaseCryptoViewModel: BaseViewModel {
   
     typealias Model = [Cryptocurrency]
-    var data: [Cryptocurrency] = [] { // Allow read-access for extensions and tests
+    var data: [Cryptocurrency] = [] {
         didSet {
             handleSuccess(data)
         }
@@ -95,13 +95,11 @@ class BaseCryptoViewModel: BaseViewModel {
         guard let userInfo = notification.userInfo,
                let symbol = userInfo["symbol"] as? String,
                let isFavorite = userInfo["isFavorite"] as? Bool else {
-             print("Failed to parse notification userInfo as (String, Bool).")
              return
          }
          
          let tuple: (String, Bool) = (symbol, isFavorite)
         onChange(symbol: tuple.0, isFavorite: tuple.1)
-         print("Parsed Tuple: \(tuple)")
     }
 
     deinit {

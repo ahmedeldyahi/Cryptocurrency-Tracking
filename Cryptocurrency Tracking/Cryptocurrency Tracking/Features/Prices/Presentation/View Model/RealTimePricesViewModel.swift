@@ -12,7 +12,6 @@ class RealTimePricesViewModel: BaseCryptoViewModel {
     private(set) var timerCancellable: AnyCancellable?
     private var timerInterval: TimeInterval
 
-    // Allowing a custom interval for testing
     init(fetchUseCase: FetchPricesUseCase = FetchPricesUseCaseImpl(), timerInterval: TimeInterval = 30.0) {
         self.timerInterval = timerInterval
         super.init(fetchUseCase: fetchUseCase)

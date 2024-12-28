@@ -17,7 +17,6 @@
 		8B5E89292D1ABC2900DE5700 /* ErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5E89262D1ABC2900DE5700 /* ErrorView.swift */; };
 		8B5E892A2D1ABC2900DE5700 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5E89272D1ABC2900DE5700 /* LoadingView.swift */; };
 		8B5E892C2D1ACE8F00DE5700 /* NetworkMonitor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B5E892B2D1ACE8F00DE5700 /* NetworkMonitor.swift */; };
-		8B8F31422D19D6F7003AF235 /* ResourceState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F31402D19D6F7003AF235 /* ResourceState.swift */; };
 		8B8F31562D19D7C1003AF235 /* Color.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F314F2D19D7C1003AF235 /* Color.swift */; };
 		8B8F31572D19D7C1003AF235 /* HTTPURLResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F31502D19D7C1003AF235 /* HTTPURLResponse.swift */; };
 		8B8F31582D19D7C1003AF235 /* Formatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B8F31522D19D7C1003AF235 /* Formatter.swift */; };
@@ -87,7 +86,6 @@
 		8B5E89262D1ABC2900DE5700 /* ErrorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorView.swift; sourceTree = "<group>"; };
 		8B5E89272D1ABC2900DE5700 /* LoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		8B5E892B2D1ACE8F00DE5700 /* NetworkMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkMonitor.swift; sourceTree = "<group>"; };
-		8B8F31402D19D6F7003AF235 /* ResourceState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResourceState.swift; sourceTree = "<group>"; };
 		8B8F314F2D19D7C1003AF235 /* Color.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		8B8F31502D19D7C1003AF235 /* HTTPURLResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPURLResponse.swift; sourceTree = "<group>"; };
 		8B8F31522D19D7C1003AF235 /* Formatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatter.swift; sourceTree = "<group>"; };
@@ -193,7 +191,6 @@
 			isa = PBXGroup;
 			children = (
 				8B394A2E2D1C213800B42FAB /* AppError.swift */,
-				8B8F31402D19D6F7003AF235 /* ResourceState.swift */,
 				8B8F31602D1A1EE9003AF235 /* VieState.swift */,
 			);
 			name = Enums;
@@ -420,14 +417,14 @@
 			path = Repository;
 			sourceTree = "<group>";
 		};
-		8BD135462D16F303008913D4 /* 01-SearchCrypto */ = {
+		8BD135462D16F303008913D4 /* SearchCrypto */ = {
 			isa = PBXGroup;
 			children = (
 				8BCA23DF2D1EC73600DE56C3 /* Repository */,
 				8BD135402D16F237008913D4 /* Use Cases */,
 				8BCA23DD2D1EC64700DE56C3 /* Presentation */,
 			);
-			path = "01-SearchCrypto";
+			path = SearchCrypto;
 			sourceTree = "<group>";
 		};
 		8BD1354B2D171D3A008913D4 /* Local Data */ = {
@@ -440,31 +437,31 @@
 			path = "Local Data";
 			sourceTree = "<group>";
 		};
-		8BD135522D1762FE008913D4 /* 03-Favorites */ = {
+		8BD135522D1762FE008913D4 /* Favorites */ = {
 			isa = PBXGroup;
 			children = (
 				8BD135412D16F27E008913D4 /* Repository */,
 				8BCA23E02D1EC75400DE56C3 /* Presentation */,
 			);
-			path = "03-Favorites";
+			path = Favorites;
 			sourceTree = "<group>";
 		};
-		8BD135592D176F13008913D4 /* 02-Prices */ = {
+		8BD135592D176F13008913D4 /* Prices */ = {
 			isa = PBXGroup;
 			children = (
 				8B8F315D2D1A1AAD003AF235 /* Presentation */,
 			);
-			path = "02-Prices";
+			path = Prices;
 			sourceTree = "<group>";
 		};
-		8BD1355C2D177351008913D4 /* 04-Detail */ = {
+		8BD1355C2D177351008913D4 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
 				8BCA23E12D1EC7A100DE56C3 /* Repository */,
 				8B3949B42D1AF54400B42FAB /* Use Cases */,
 				8BCA23E22D1EC7AC00DE56C3 /* Presentation */,
 			);
-			path = "04-Detail";
+			path = Detail;
 			sourceTree = "<group>";
 		};
 		8BD135612D18995B008913D4 /* Core */ = {
@@ -485,10 +482,10 @@
 			children = (
 				8BD135502D1762BB008913D4 /* MainTabView.swift */,
 				8B8F315E2D1A1AFE003AF235 /* AppCoordinator.swift */,
-				8BD135462D16F303008913D4 /* 01-SearchCrypto */,
-				8BD135592D176F13008913D4 /* 02-Prices */,
-				8BD135522D1762FE008913D4 /* 03-Favorites */,
-				8BD1355C2D177351008913D4 /* 04-Detail */,
+				8BD135462D16F303008913D4 /* SearchCrypto */,
+				8BD135592D176F13008913D4 /* Prices */,
+				8BD135522D1762FE008913D4 /* Favorites */,
+				8BD1355C2D177351008913D4 /* Detail */,
 			);
 			path = Features;
 			sourceTree = "<group>";
@@ -694,7 +691,6 @@
 				8BD135302D16EED0008913D4 /* NetworkService.swift in Sources */,
 				8B394A392D1CDFB300B42FAB /* Model.xcdatamodeld in Sources */,
 				8B8F315F2D1A1AFE003AF235 /* AppCoordinator.swift in Sources */,
-				8B8F31422D19D6F7003AF235 /* ResourceState.swift in Sources */,
 				8B8F31612D1A1EE9003AF235 /* VieState.swift in Sources */,
 				8BCA23E42D1EC7F300DE56C3 /* CryptoDetailsRepositoryImpl.swift in Sources */,
 				8BD135482D16F32A008913D4 /* CryptoSearchViewModel.swift in Sources */,
